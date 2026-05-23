@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>鳴潮ルーレット</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <h1 style="display:flex;align-items:center;gap:12px;">
+  鳴潮ランダムPT編成
+   <button id="helpBtn"
+    style="font-size:16px;padding:4px 8px;border-radius:6px;border:1px solid #888;background:var(--card);color:var(--text);cursor:pointer;margin-left:auto;">?</button>
+
+ <button id="themeToggle"
+    style="font-size:14px;padding:4px 8px;border-radius:6px;border:1px solid #888;background:var(--card);color:var(--text);cursor:pointer;">ダークモード</button>
+</h1>
+  <div class="container">
+    <!-- 左カラム：所持キャラ一覧 + 抽選設定 -->
+    <div class="left">
+      <h2>① 所持キャラ設定</h2>
+
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+        <div>
+          <label>編成人数：
+            <select id="memberCount"></select>
+          </label>
+        </div>
+        <div>
+          <label>チーム数：
+            <select id="teamCount">
+              <option value="1">1チーム</option>
+              <option value="2">2チーム</option>
+              <option value="3">3チーム</option>
+              <option value="4">4チーム</option>
+              <option value="5">5チーム</option>
+              <option value="6">6チーム</option>
+              <option value="7">7チーム</option>
+              <option value="8">8チーム</option>
+              <option value="9">9チーム</option>
+              <option value="10">10チーム</option>
+              <option value="all" selected>全キャラ抽選</option>
+            </select>
+          </label>
+
+          <button id="selectAll" class="primary">全て有効化</button>
+          <button id="deselectAll" class="primary">全て無効化</button>
+        </div>
+      </div>
+
+      <p class="note">
+  現在<span id="selectedCount" style="color:var(--theme-1);font-weight:800">0</span>名選択中<br>
+  ※初期「★4」有効、「★5」無効
+</p>
+
+      <div id="characterList" class="character-list" aria-label="所持キャラクター一覧">
+      </div>
+
+      <div class="footer-controls">
+      </div>
+    </div>
+
+    <!-- 右カラム：抽選ボタン + 結果（チームは縦並び） -->
+    <div class="right">
+      <h2>② 抽選&結果</h2>
+
+      <div class="draw-controls">
+      <button id="drawBtn" class="primary">個別抽選</button>
+      <div style="font-size:14px;color:var(--text)">押すたびに<span style="color:var(--theme-1);font-weight:800">1</span>名選出</div> 
+<button id="autoFillBtn" class="primary" title="残りを一気に抽選" style="margin-left:auto;">一括抽選</button>
+<button id="resetBtn" class="ghost">抽選リセット</button>
+      </div>
+
+      <div id="status" class="note">まだ抽選されていません。</div>
+
+      <div id="result-area" class="result-boards" aria-live="polite">
+        <!-- チーム要素が縦に並ぶ -->
+      </div>
+    </div>
+  </div>
+
+<!-- ===== ヘルプ ===== -->
+
+<dialog id="helpDialog" class="help-dialog">
+
+  <div class="help-content">
+  <h3>使い方</h3>
+  <p>
+    ・キャラクター画像をクリックして所持キャラクターを設定<br>
+    ・抽選ボタンを押す<br>
+      　個別抽選　　：1名ずつ手動抽選<br>
+      　一括抽選　　：一気に自動抽選<br>
+      　抽選リセット：キャラクター設定はそのままで抽選結果のみをクリア<br>
+      　※「一括抽選」の場合抽選終了まで止めることはできません<br>
+      　※抽選済みキャラクターは同一編成内で重複しませんが、最終組が人数不足の場合は選択キャラから再抽選されます
+  </p>
+
+  <h3>利用について</h3>
+  <p>
+    本ツールは個人制作の非公式ファンツールです<br>
+    ツール自体の再配布・販売・転載は禁止しています<br>
+    なお、SNS投稿等での画面共有は自由に行っていただいて問題ありません<br>
+    各キャラクターおよびゲーム関連の権利は権利元に帰属します
+  </p>
+
+  <h3>免責事項</h3>
+  <p>
+    個人が趣味で制作しているため、動作保証はありません<br>
+    利用によって発生した問題・損害等について、作者は責任を負いません<br>
+    今後のアップデートや新キャラクター追加への対応は保証していません、がんばります
+  </p>
+  </div>
+</dialog>
+
+<script src="js/data.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

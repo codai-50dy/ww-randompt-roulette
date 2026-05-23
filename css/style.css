@@ -1,0 +1,332 @@
+  :root{
+    --theme-1: #9dbd0f;
+    --theme-2: #3c3c3c;
+    --theme-3: #b99eff;
+    --bg: #f6f7f9;
+    --card: #ffffff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: "Noto Sans JP", "Segoe UI", sans-serif;
+    background:var(--bg);
+    color: var(--text); /* color:var(--theme-1); */
+    padding:20px;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .container{
+    display:flex;
+    gap:20px;
+    align-items:flex-start;
+  }
+
+/* ===== スクロール対応 ===== */
+/* カラム全体を画面高さ基準に
+.container{
+  height: calc(100vh - 100px);
+}
+*/
+
+  /* 左右カラム */
+.left,
+.right{
+  display:flex;
+  flex-direction:column;
+  min-height:0;
+
+  background:var(--card);
+  transition: background 0.3s, color 0.3s;
+  border-radius:10px;
+  padding:16px;
+  box-shadow:0 6px 18px rgba(36,59,95,0.06);
+}
+  .left{
+    width: 55%;
+  }
+  .right{
+    width: 45%;
+    gap:12px;
+  }
+
+/* 抽選結果スクロール */
+.result-boards{
+  flex:1;
+  overflow-y:auto;
+  min-height:0;
+  max-height:65dvh;
+  padding-right:4px;
+}
+
+/* スクロールバー装飾 */
+.character-list::-webkit-scrollbar,
+.result-boards::-webkit-scrollbar{
+  width:8px;
+}
+
+.character-list::-webkit-scrollbar-thumb,
+.result-boards::-webkit-scrollbar-thumb{
+  background: var(--theme-1);
+  border-radius:8px;
+}
+
+  h1{margin:0 0 12px 0; color:var(--text)}
+  h2{margin:8px 0}
+
+/* 所持キャラ一覧スクロール */
+.character-list{
+  flex:1;
+  overflow-y:auto;
+  min-height:0;
+  max-height:65dvh;
+  padding-right:4px;
+
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:8px;
+}
+
+  .character{
+    width:86px;
+    height:86px;
+    border-radius:8px;
+    background:#fff;
+    cursor:pointer;
+    user-select:none;
+    box-shadow:0 2px 6px rgba(0,0,0,0.2);
+    transition:all .12s;
+    font-weight:600;
+    text-align:center;
+    overflow:hidden;     /* ←追加（重要） */
+    border: none;
+    /* border: 2px solid transparent; デフォルトは透明 */
+  }
+.character img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block; /* ←余白防止 */
+}
+  /* キャラクター選択枠 */
+  .character.selected{
+  outline: 4px solid var(--theme-3);
+  outline-offset: -3px; /* ←内側に表示してズレ防止 */
+  }
+  /* 抽選済み（グレーアウト） */
+  .character.disabled{
+    opacity:.32;
+    pointer-events:none;
+    filter:grayscale(1);
+    transform:none;
+  }
+
+  /* 抽選中に一時ハイライト（枠） */
+.character.highlight{
+  outline: 7px solid var(--theme-1);
+  outline-offset: -4px;
+}
+
+  /* コントロール */
+  .controls{
+    margin-top:12px;
+    display:flex;
+    gap:8px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  label{font-size:14px}
+  select, button{
+    padding:8px 10px;
+    border-radius:8px;
+    border:1px solid #d5d7da;
+    background:#fff;
+    color:var(--theme-2);
+    font-weight:600;
+  }
+  button.primary{
+    background:var(--theme-1);
+    border-color: var(--btn-bg);  /* ボタン枠線 */
+    cursor:pointer;
+    color: var(--btn-color);
+    transition: background 0.3s, color 0.3s;
+  }
+/* 残り一括抽選 */
+  button.ghost{
+  background: var(--ghost-btn-bg);  /* 背景 */
+  color: var(--ghost-btn-color);    /* 文字色 */
+  border-color: var(--btn-border);
+  }
+
+  /* 右側：結果エリア */
+  .draw-controls{
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
+  .result-boards{
+    display:flex;
+    flex-direction:column; /* チームを縦に並べる */
+    gap:12px;
+    margin-top:6px;
+  }
+  .team{
+    border-radius:8px;
+    padding:8px;
+    background:#f6f7f9; /* 選出チームの背景色 */
+    border:1px dashed rgba(36,59,95,0.06);
+  }
+  .team h3{
+    margin:0 0 8px 0;
+    color:var(--theme-2);
+    font-size:15px;
+  }
+  .team-members{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  /* チーム内のメンバーは縦に並べたい場合は下のスタイルを変えればOK。
+     今は横に並べつつ、見た目を整えておく */
+  .member-box{
+    min-width:86px;
+    height:86px;
+    border-radius:6px;
+    background:#f1f3f5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:600;
+    color:var(--theme-2);
+    border:1px solid rgba(36,59,95,0.05);
+  box-shadow:0 2px 6px rgba(0,0,0,0.2);
+  }
+.member-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+  /* small */
+  .note{
+    font-size:14px;
+    color: var(--note-text);
+    margin-top:6px
+  }
+  .footer-controls{
+    display:flex;
+    gap:8px; 
+    margin-top:8px; 
+    align-items:center
+  }
+
+/* ===== ヘルプ ===== */
+
+.help-dialog{
+  border:none;
+  border-radius:12px;
+
+  padding:24px;
+
+  width:min(90vw,500px);
+
+  background:var(--card);
+  color:var(--text);
+
+  box-shadow:0 10px 30px rgba(0,0,0,0.25);
+}
+
+.help-dialog::backdrop{
+  background:rgba(0,0,0,0.45);
+}
+
+.help-content{
+  margin-top:12px;
+  line-height:1.8;
+  font-size:15px;
+}
+
+.help-footer{
+  margin-top:20px;
+
+  display:flex;
+  justify-content:flex-end;
+}
+
+
+/* スマホ対応レイアウト：画面幅768px以下で縦並びに変更 */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .left, .right {
+    width: 100%;
+  }
+  /* 右カラムと左カラムの間隔を少し開ける */
+  .right {
+    margin-top: 16px;
+  }
+  /* キャラクターアイコンを少し小さくして収まりを良くする */
+  .character {
+    width: 72px;
+    height: 72px;
+    font-size: 14px;
+  }
+  /* チーム内のメンバーボックスも調整 */
+  .member-box {
+    min-width: 72px;
+    height: 72px;
+    font-size: 13px;
+  }
+  /* ボタンやセレクトの文字を少し小さく */
+  select, button {
+    font-size: 14px;
+    padding: 6px 8px;
+  }
+   /* スマホ時スクロール高さ */
+  .container{
+    height:auto;
+  }
+
+  .character-list{
+    max-height:45dvh;
+  }
+
+  .result-boards{
+    max-height:45dvh;
+  }
+}
+
+/* ライトモード */
+:root[data-theme='light'] {
+  --bg: #f6f7f9; /* 白 */
+  --card: #ffffff; /* 白 */
+  --text: #000; /* 黒 */
+  --btn-bg: #9dbd0f; /* 黄緑 */
+  --btn-color: #fff; /* 白 */
+  --character-text: #3c3c3c; /* キャラクター名は少し明るい黒 */
+  --note-text: #555; /* 少し濃いめグレー */
+  --ghost-btn-bg: #fff;
+  --ghost-btn-color: #333;
+  --btn-border: #ccc;
+}
+/* ダークモード */
+:root[data-theme='dark'] {
+  --bg: #2b2b2b; /* 黒 */
+  --card: #3c3c3c; /* 少し明るい黒 */
+  --text: #eee; /* 少し明るいグレー */
+  --btn-bg: #9dbd0f; /* 黄緑 */
+  --btn-color: #fff; /* 白「抽選」文字色 */
+  --character-text: #3c3c3c; /* キャラクター名は少し明るい黒 */
+  --note-text: #ddd; /* 明るめグレーで視認性アップ */
+  --ghost-btn-bg: #555;
+  --ghost-btn-color: #fff;
+  --btn-border: #888;
+}
+:root[data-theme='dark'] .team{
+  background:#818181; 
+}
+/* キャラクター名 */
+.character {
+  color: var(--character-text);
+}
