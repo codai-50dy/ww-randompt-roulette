@@ -189,8 +189,9 @@
   /* チーム内のメンバーは縦に並べたい場合は下のスタイルを変えればOK。
      今は横に並べつつ、見た目を整えておく */
   .member-box{
-    min-width:86px;
+    width:86px;
     height:86px;
+    flex-shrink:0;
     border-radius:6px;
     background:#f1f3f5;
     display:flex;
@@ -274,7 +275,7 @@
   }
   /* チーム内のメンバーボックスも調整 */
   .member-box {
-    min-width: 72px;
+    width: 72px;
     height: 72px;
     font-size: 13px;
   }
