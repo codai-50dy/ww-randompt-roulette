@@ -16,9 +16,9 @@ const fiveStars = [
   {name:"漂泊者・消滅", img:"img/five/漂泊者消.png"},
   {name:"漂泊者・回折", img:"img/five/漂泊者回.png"},
 
-  //{name:"ルシラー", img:"img/five/ルシラー.png"},
-  //{name:"ルーシー", img:"img/five/ルーシー.png"},
-  //{name:"レベッカ", img:"img/five/レベッカ.png"},
+  {name:"ルシラー", img:"img/five/ルシラー.png"},
+  {name:"ルーシー", img:"img/five/ルーシー.png"},
+  {name:"レベッカ", img:"img/five/レベッカ.png"},
   {name:"ダーニャ", img:"img/five/ダーニャ.png"},
   {name:"緋雪", img:"img/five/緋雪.png"},
   {name:"シグリカ", img:"img/five/シグリカ.png"},
