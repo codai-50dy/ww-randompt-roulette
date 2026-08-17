@@ -11,12 +11,14 @@
 const fiveStars = [
   //{name:"漂泊者・凝縮", img:"img/five/漂泊者凝.png"},
   //{name:"漂泊者・焦熱", img:"img/five/漂泊者焦.png"},
+  {name:"漂泊者・電導", img:"img/five/漂泊者電.png"},
   {name:"漂泊者・気動", img:"img/five/漂泊者気.png"},
   {name:"漂泊者・消滅", img:"img/five/漂泊者消.png"},
   {name:"漂泊者・回折", img:"img/five/漂泊者回.png"},
-  {name:"漂泊者・電導", img:"img/five/漂泊者電.png"},
 
-  //{name:"next", img:"img/five/next.png"},
+  // {name:"next", img:"img/five/next.png"},
+  {name:"景燃", img:"img/five/景燃.png"},
+  {name:"清宵", img:"img/five/清宵.png"}, 
   {name:"穂穂", img:"img/five/穂穂.png"},
   {name:"秧秧・玄翎", img:"img/five/秧秧玄翎.png"},
   {name:"ルシラー", img:"img/five/ルシラー.png"},
