@@ -17,6 +17,8 @@ const fiveStars = [
   {name:"漂泊者・回折", img:"img/five/漂泊者回.png"},
 
   // {name:"next", img:"img/five/next.png"},
+  //{name:"鎖暝", img:"img/five/鎖暝.png"},
+  {name:"心", img:"img/five/心.png"},
   {name:"景燃", img:"img/five/景燃.png"},
   {name:"清宵", img:"img/five/清宵.png"}, 
   {name:"穂穂", img:"img/five/穂穂.png"},
